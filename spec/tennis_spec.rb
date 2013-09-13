@@ -29,8 +29,8 @@ end
 
 describe Tennis::Player do
   let(:player) do
-    player = Tennis::Player.new
-    player.opponent = Tennis::Player.new
+    game = Tennis::Game.new
+    player = game.player1
 
     return player
   end
@@ -42,10 +42,26 @@ describe Tennis::Player do
   end
 
   describe '#record_won_ball!' do
-    it 'increments the points' do
-      player.record_won_ball!
+    context 'player scores' do
+      it 'increments the points' do
+        player.record_won_ball!
 
-      expect(player.points).to eq(1)
+        expect(player.points).to eq(1)
+      end
+
+      it 'reduces opponents score when they have advantage' do
+        player.opponent.record_won_ball!
+        player.opponent.record_won_ball!
+        player.opponent.record_won_ball!
+        player.record_won_ball!
+        player.record_won_ball!
+        player.record_won_ball!
+        player.opponent.record_won_ball!
+        player.record_won_ball!
+
+        expect(player.points).to eq(3)
+        expect(player.opponent.points).to eq(3)
+      end
     end
   end
 

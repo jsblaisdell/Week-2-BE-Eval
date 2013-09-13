@@ -30,7 +30,11 @@ module Tennis
     #
     # Returns the integer new score.
     def record_won_ball!
-      @points += 1
+      if @points == 3 && @opponent.points == 4
+        @opponent.points -= 1
+      else
+        @points += 1
+      end
     end
 
     # Returns the String score for the player.
