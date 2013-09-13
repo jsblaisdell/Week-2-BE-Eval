@@ -12,7 +12,10 @@ describe Tennis::Game do
       expect(game.player2).to be_a(Tennis::Player)
     end
 
-    it 'sets the opponent for each player'
+    it 'sets the opponent for each player' do
+      expect(game.player1.opponent).to eq(game.player2)
+      expect(game.player2.opponent).to eq(game.player1)
+    end
   end
 
   describe '#wins_ball' do
@@ -35,7 +38,7 @@ describe Tennis::Player do
   describe '.initialize' do
     it 'sets the points to 0' do
       expect(player.points).to eq(0)
-    end 
+    end
   end
 
   describe '#record_won_ball!' do
@@ -52,21 +55,21 @@ describe Tennis::Player do
         expect(player.score).to eq('love')
       end
     end
-    
+
     context 'when points is 1' do
       it 'returns fifteen' do
         player.points = 1
 
         expect(player.score).to eq('fifteen')
-      end 
+      end
     end
-    
+
     context 'when points is 2' do
-      it 'returns thirty'  
+      it 'returns thirty'
     end
-    
+
     context 'when points is 3' do
-      it 'returns forty' 
+      it 'returns forty'
     end
   end
 end
