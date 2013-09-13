@@ -79,5 +79,13 @@ describe Tennis::Player do
         expect(player.score).to eq('forty')
       end
     end
+
+    context 'when points is 4' do
+      it 'returns advantage' do
+        player.points = 4
+
+        expect(player.score).to eq('advantage')
+      end
+    end
   end
 end

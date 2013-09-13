@@ -11,6 +11,8 @@ module Tennis
     end
 
     # Increments score of winning player.
+    #
+    # player - either 1 or 2 for the player who scored
     def wins_ball(player)
       @player1.record_won_ball! if player == 1
       @player2.record_won_ball! if player == 2
@@ -37,6 +39,7 @@ module Tennis
       return 'fifteen' if @points == 1
       return 'thirty' if @points == 2
       return 'forty' if @points == 3
+      return 'advantage' if @points == 4
     end
   end
 end
